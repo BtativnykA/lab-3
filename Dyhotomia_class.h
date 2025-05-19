@@ -1,24 +1,27 @@
 #ifndef DYHOTOMIA_CLASS_H
 #define DYHOTOMIA_CLASS_H
 
+#include <functional> 
+
+// Клас для реалізації методів дихотомії та Ньютона
 class Dyhotomia_class {
 private:
-    double a;    // Ліва межа
-    double b;    // Права межа
-    double eps;  // Точність
+    double a;       // ліва межа 
+    double b;       // права межа 
+    double eps;     //  точність
 
-    double функція(double x);       // f(x)
-    double похідна(double x);       // f'(x)
+    std::function<double(double)> f;  // функція  яку досліджуємо
+    std::function<double(double)> df; // похідна  обчислювана
 
 public:
-    Dyhotomia_class();              // Конструктор
-    ~Dyhotomia_class();             // Деструктор
+    Dyhotomia_class();  // конструктор
+    ~Dyhotomia_class(); // деструктор
 
-    void встановитиМежі(double vol_a, double vol_b); 
-    void встановитиТочність(double vol_eps);         
+    void встановитиМежі(double vol_a, double vol_b);  
+    void встановитиТочність(double vol_eps);        
 
-    int обчислитиДихотомією(double &x);             
-    int обчислитиНьютоном(double x0, double &x);     
+    int обчислитиДихотомією(double &x); 
+    int обчислитиНьютоном(double x0, double &x); 
 };
 
 #endif
